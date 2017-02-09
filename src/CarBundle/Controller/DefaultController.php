@@ -47,4 +47,16 @@ class DefaultController extends Controller
         
         return $this->render('CarBundle:Default:list.html.twig',array("cars"=>$marque));
     }
+
+    /**
+    * @Route("/car/show/{id}", name="show")
+    * 
+    */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $marque = $em->getRepository("CarBundle:Car")->findById($id);
+
+        return $this->render('CarBundle:Default:show.html.twig',array("cars"=>$marque));
+    }
 }
