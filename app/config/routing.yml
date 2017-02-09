@@ -1,3 +1,8 @@
+car:
+    resource: "@CarBundle/Controller/"
+    type:     annotation
+    prefix:   /car/add
+
 user:
     resource: "@UserBundle/Controller/"
     type:     annotation
