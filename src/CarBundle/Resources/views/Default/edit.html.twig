@@ -9,21 +9,17 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <div class="panel panel-default">
-  <table class="table">
-  	<tr>
-  		<th>#</th>
-  		<th>Marque voiture</th>
-  	</tr>
-    {% for car in cars %}
-		<tr> 
-			<td>  </td>
-      <td> {{ car.marque }} </td> 
-      <td> <a href="../show/{{car.id}}"><button type="button" class="btn btn-success">Show</button></a></td> 
-      <td> <a href="../edit/{{car.id}}"><button type="button" class="btn btn-info">Edit</button></a></td> 
-      <td> <a href="../delete/{{car.id}}"><button type="button" class="btn btn-danger">Delete</button></td> 
-      
-		</tr>
-	{% endfor %}
-  </table>
+ <table style="border-collapse:separate; border-spacing:1em;">
+        <tr>
+          <td>{{ form_label(form.marque) }}</td>
+          <td>{{ form_widget(form.marque) }}</td>
+          <td class="error">{{ form_errors(form.marque) }}</td>
+        </tr>
+        <tr>{{ form_rest(form) }}</tr>
+        <tr>
+          <td></td><td><input type="submit" formnovalidate /></td>
+        <tr>
+ 
+      </table>  
 </div>
 {%endblock%}

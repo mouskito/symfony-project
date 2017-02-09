@@ -16,11 +16,11 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   	</tr>
     {% for car in cars %}
 		<tr> 
-			<td> {{ car.id }} </td>
+			<td>  </td>
 			<td> {{ car.marque }} </td> 
 			<td> <a href="../show/{{car.id}}"><button type="button" class="btn btn-success">Show</button></a></td> 
-			<td> <button type="button" class="btn btn-info">Edit</button></td> 
-			<td> <button type="button" class="btn btn-danger">Delete</button></td> 
+			<td> <a href="../edit/{{car.id}}"><button type="button" class="btn btn-info">Edit</button></a></td> 
+			<td> <a href="../delete/{{car.id}}"><button type="button" class="btn btn-danger">Delete</button></td> 
 		</tr>
 	{% endfor %}
   </table>

@@ -59,4 +59,54 @@ class DefaultController extends Controller
 
         return $this->render('CarBundle:Default:show.html.twig',array("cars"=>$marque));
     }
+
+    /**
+    * @Route("/car/edit/{id}", name="edit")
+    * 
+    */
+    public function editAction($id,Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $marque = $em->getRepository("CarBundle:Car")->findById($id);
+        //dump($marque);
+        //die;
+        //$request = $this->get('request');
+
+        if ($marque)
+        {
+            $form = $this->createFormBuilder($marque)
+            ->add('marque')
+            ->add('save', SubmitType::class)
+            ->getForm();
+            if ($request->getMethod() == 'POST')
+            {
+                $form->bindRequest($request);
+                $em->flush();
+            }
+        return $this->render('CarBundle:Default:edit.html.twig',array("cars"=>$marque,
+            'id' => $marque->getId()));
+        }
+    }
+
+    /**
+    * @Route("/car/delete/{id}", name="delete")
+    * 
+    */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $marque = $em->getRepository("CarBundle:Car")->findById($id);
+
+        foreach ($marque as $entity)
+        {
+            $em->remove($entity);
+            $em->flush();
+            if ($em->remove($entity)) {
+                return $this->render('CarBundle:Default:delete.html.twig',array("cars"=>$marque));
+            }else
+            {
+                return $this->render('CarBundle:Default:index.html.twig');
+            }
+        }
+    }
 }
