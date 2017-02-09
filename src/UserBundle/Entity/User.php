@@ -22,9 +22,36 @@ class User extends BaseUser
      */
     protected $id;
 
-   
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $loginCount = 0;
+
     public function __construct(){
         parent::__construct();
+    }
+
+    /**
+     * Set loginCount
+     *
+     * @param integer $loginCount
+     *
+     * @return User
+     */
+    public function setLoginCount($loginCount)
+    {
+        $this->loginCount = $loginCount;
+        return $this;
+    }
+ 
+    /**
+     * Get loginCount
+     *
+     * @return integer
+     */
+    public function getLoginCount()
+    {
+        return $this->loginCount;
     }
 }
 
